@@ -69,7 +69,7 @@ const Home = () => {
         <div>Loading...</div>
       ) : (
         <main className="mt-4 w-2/3 rounded bg-white p-10 shadow-lg">
-          TEST
+          TEST2
           <form className="space-y-4" onSubmit={onSubmit}>
             <label className="block">
               <span className="text-gray-700">Topic:</span>
