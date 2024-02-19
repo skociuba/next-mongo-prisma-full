@@ -1,21 +1,27 @@
 import {PrismaAdapter} from '@next-auth/prisma-adapter';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import GoogleProvider from 'next-auth/providers/google';
-import GithubProvider from 'next-auth/providers/github';
 import bcrypt from 'bcrypt';
 
 import {prisma} from '../prisma/index';
 
+interface User {
+  id?: number;
+}
+
+interface Token {
+  id?: number;
+}
+
+interface Session {
+  user: User;
+}
 export const authOptions = {
   adapter: PrismaAdapter(prisma),
   providers: [
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
     GoogleProvider({
-      clientId: process.env.GOOGLE_ID,
-      clientSecret: process.env.GOOGLE_SECRET,
+      clientId: process.env.GOOGLE_ID ?? '',
+      clientSecret: process.env.GOOGLE_SECRET ?? '',
     }),
     CredentialsProvider({
       name: 'credentials',
@@ -26,7 +32,7 @@ export const authOptions = {
       },
       async authorize(credentials) {
         // check to see if email and password is there
-        if (!credentials.email || !credentials.password) {
+        if (!credentials?.email || !credentials?.password) {
           throw new Error('Please enter an email and password');
         }
 
@@ -58,21 +64,25 @@ export const authOptions = {
     }),
   ],
   callbacks: {
-    async jwt({token, user}) {
+    jwt: async ({token, user}: {token: Token; user: User}): Promise<Token> => {
       if (user) {
         return {...token, id: user?.id};
       }
       return token;
     },
-    async session({session, token}) {
-      return {
-        ...session,
-        user: {
-          ...session.user,
-          id: token?.id,
-        },
-      };
-    },
+    session: async ({
+      session,
+      token,
+    }: {
+      session: Session;
+      token: Token;
+    }): Promise<Session> => ({
+      ...session,
+      user: {
+        ...session.user,
+        id: token?.id,
+      },
+    }),
   },
   secret: process.env.SECRET,
   session: {

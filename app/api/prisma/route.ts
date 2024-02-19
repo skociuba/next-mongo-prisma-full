@@ -1,5 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-nocheck
 import {NextResponse} from 'next/server';
 
 import {prisma} from '../../../prisma/index';
@@ -12,7 +10,9 @@ async function main() {
   }
 }
 
-export const GET = async (req) => {
+export const GET = async (req: {
+  nextUrl: {searchParams: {get: (arg0: string) => string}};
+}) => {
   try {
     await main();
     const userId = req?.nextUrl?.searchParams?.get('userId');

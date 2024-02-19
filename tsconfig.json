@@ -37,7 +37,7 @@
     "lib/connectToDatabase.tsx",
     "mongo/page.tsx",
     ".next/types/**/*.ts"
-, "app/mongo/api/route.ts", "prisma/index.ts", "app/prisma/page.js"  ],
+, "app/mongo/api/route.ts", "prisma/index.ts", "app/prisma/page.tsx"  ],
   "exclude": [
     "node_modules"
   ]

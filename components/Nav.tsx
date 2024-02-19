@@ -1,11 +1,11 @@
 'use client';
-import {useEffect} from 'react';
+import {useLayoutEffect} from 'react';
 import {useSession, signOut} from 'next-auth/react';
 import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 const Nav = () => {
   const router = useRouter();
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (session?.status !== 'authenticated') {
       router.push('/');
     }
@@ -20,12 +20,13 @@ const Nav = () => {
             <Link href="/">Home</Link>
           </li>
 
-          <li className="p-4">
-            <Link href="/prisma">Prisma</Link>
-          </li>
-
           {session?.status === 'authenticated' ? (
-            <button onClick={() => signOut()}>Sign Out</button>
+            <>
+              <li className="p-4">
+                <Link href="/prisma">Posts</Link>
+              </li>
+              <button onClick={() => signOut()}>Sign Out</button>
+            </>
           ) : (
             <>
               <li className="p-4">

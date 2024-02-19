@@ -9,18 +9,18 @@ import {
   useDeletePostMutation,
   useUpdatePostMutation,
 } from '../../provider/redux/posts/Post';
+import {todoType} from '../../types/toDoTypes';
 
 const Home = () => {
   const session = useSession();
+  const userId = session?.data?.user?.id;
   const [form, setForm] = useState({
     name: '',
     cuisine: '',
-    userId: session?.data?.user?.id,
+    userId: userId,
   });
 
-  const userId = session?.data?.user?.id;
-  console.log(JSON.stringify(userId));
-  const [editingPost, setEditingPost] = useState(null);
+  const [editingPost, setEditingPost] = useState<todoType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {data, isError, isLoading, refetch} = useGetPostsQuery(
     JSON.stringify(userId),
@@ -28,14 +28,16 @@ const Home = () => {
   const [addPost] = useAddPostMutation();
   const [deletePost] = useDeletePostMutation();
   const [updatePost] = useUpdatePostMutation();
-  const onChange = (e) => {
+  const onChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setForm({...form, [e.target.name]: e.target.value});
   };
-  const onSubmit = async (e) => {
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await addPost(form);
-      setForm({name: '', cuisine: ''});
+      setForm({name: '', cuisine: '', userId: ''});
       refetch();
       return response;
     } catch (error) {
@@ -43,13 +45,15 @@ const Home = () => {
     }
   };
 
-  const onEditChange = (e) => {
+  const onEditChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     if (editingPost) {
       setEditingPost({...editingPost, [e.target.name]: e.target.value});
     }
   };
 
-  const onEditSubmit = async (e) => {
+  const onEditSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     try {
       const response = await updatePost(editingPost);
@@ -69,7 +73,6 @@ const Home = () => {
         <div>Loading...</div>
       ) : (
         <main className="mt-4 w-2/3 rounded bg-white p-10 shadow-lg">
-          TEST3
           <form className="space-y-4" onSubmit={onSubmit}>
             <label className="block">
               <span className="text-gray-700">Topic:</span>
@@ -130,7 +133,7 @@ const Home = () => {
               </form>
             </Modal>
           )}
-          {data?.post?.map((restaurant) => (
+          {data?.post?.map((restaurant: todoType) => (
             <div
               key={restaurant.id}
               className="mt-4 flex flex-col items-start rounded bg-gray-100 p-4 shadow-lg">
