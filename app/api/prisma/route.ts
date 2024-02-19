@@ -1,4 +1,4 @@
-import {NextResponse} from 'next/server';
+import {NextResponse, NextRequest} from 'next/server';
 
 import {prisma} from '../../../prisma/index';
 
@@ -10,12 +10,10 @@ async function main() {
   }
 }
 
-export const GET = async (req: {
-  nextUrl: {searchParams: {get: (arg0: string) => string}};
-}) => {
+export const GET = async (req: NextRequest) => {
   try {
     await main();
-    const userId = req?.nextUrl?.searchParams?.get('userId');
+    const userId = req.nextUrl.searchParams.get('userId');
     const cleanedUserId = userId?.replace(/"/g, '');
     const post = await prisma.post.findMany({
       where: {userId: cleanedUserId},
