@@ -5,13 +5,13 @@ import Link from 'next/link';
 import {useRouter} from 'next/navigation';
 const Nav = () => {
   const router = useRouter();
+  const session = useSession();
   useLayoutEffect(() => {
-    if (session?.status !== 'authenticated') {
+    if (session?.status === 'unauthenticated') {
       router.push('/');
     }
-  });
+  }, [router, session?.status]);
 
-  const session = useSession();
   return (
     <nav>
       <div className=" flex max-w-[1240px] items-center justify-between p-4">

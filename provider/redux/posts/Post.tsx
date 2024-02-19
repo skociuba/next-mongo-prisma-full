@@ -8,10 +8,12 @@ export const PostsApiPrisma = createApi({
 
   endpoints: (builder) => ({
     getPosts: builder.query({
-      query: (userId) => ({
-        url: `/api/prisma?userId=${userId}`,
-        method: 'GET',
-      }),
+      query: (userId) => {
+        if (!userId) {
+          return {url: '', method: 'GET'};
+        }
+        return {url: `/api/prisma?userId=${userId}`, method: 'GET'};
+      },
     }),
     addPost: builder.mutation({
       query: (obj) => ({
