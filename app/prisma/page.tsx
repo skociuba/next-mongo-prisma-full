@@ -1,6 +1,6 @@
 'use client';
 import Modal from 'react-modal';
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 import {useSession} from 'next-auth/react';
 
 import {
@@ -19,6 +19,9 @@ const Home = () => {
     cuisine: '',
     userId: userId,
   });
+  useEffect(() => {
+    setForm((prevForm) => ({...prevForm, userId}));
+  }, [userId]);
 
   const [editingPost, setEditingPost] = useState<todoType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
