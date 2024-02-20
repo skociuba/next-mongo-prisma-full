@@ -21,7 +21,7 @@ const Home = () => {
   });
   useEffect(() => {
     setForm((prevForm) => ({...prevForm, userId}));
-  }, [userId]);
+  }, [session]);
 
   const [editingPost, setEditingPost] = useState<todoType | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -40,7 +40,7 @@ const Home = () => {
     e.preventDefault();
     try {
       const response = await addPost(form);
-      setForm({name: '', cuisine: '', userId: ''});
+      setForm({name: '', cuisine: '', userId: userId});
       refetch();
       return response;
     } catch (error) {
