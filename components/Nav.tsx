@@ -25,6 +25,9 @@ const Nav = () => {
               <li className="p-4">
                 <Link href="/prisma">Posts</Link>
               </li>
+              <li className="p-4">
+                <Link href="/form">Form</Link>
+              </li>
               <button onClick={() => signOut()}>Sign Out</button>
             </>
           ) : (

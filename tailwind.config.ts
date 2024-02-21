@@ -19,6 +19,6 @@ const config: Config = {
     borderWidth: ['responsive', 'hover', 'focus'],
     borderColor: ['responsive', 'hover', 'focus'],
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('daisyui')],
 };
 export default config;
