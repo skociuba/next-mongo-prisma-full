@@ -6,7 +6,7 @@ const handler = NextAuth({
   ...authOptions,
   session: {
     ...authOptions.session,
-    expires: '7 days', // Add the required expires property
+    expires: '7 days',
   },
 } as unknown as AuthOptions & {
   session: {strategy: SessionStrategy | undefined};
