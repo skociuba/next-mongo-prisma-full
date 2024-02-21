@@ -69,6 +69,7 @@ const Page = () => {
       <p className="grid-col grid gap-3">
         Sex
         <div className="flex items-center">
+          {/* prettier-ignore */}
           <input
             onChange={handleChange}
             value="m"
@@ -79,6 +80,7 @@ const Page = () => {
           <span>Man</span>
         </div>
         <div className="flex items-center">
+          {/* prettier-ignore */}
           <input
             onChange={handleChange}
             type="radio"
@@ -92,6 +94,7 @@ const Page = () => {
       <div className="mt-2 flex items-center">
         <div>
           <label>
+            {/* prettier-ignore */}
             <input
               onChange={handleChange}
               name="agree"
