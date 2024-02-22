@@ -41,6 +41,7 @@ const User = ({params}) => {
         <h1>Loading...</h1>
       ) : (
         <div className="mt-4 flex min-h-screen items-center justify-center">
+          {/* prettier-ignore */}
           <div
             ref={pdfRef}
             className="h-a4 w-a4 mx-auto block  rounded-lg border p-3 pt-3 shadow-2xl">
