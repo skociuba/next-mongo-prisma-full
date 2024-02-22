@@ -137,6 +137,7 @@ const Page = () => {
             Are You agree to convert and use Your personal data?
           </span>
         </div>
+        {/* prettier-ignore */}
         <button
           className="btn btn-outline btn-accent w-full max-w-xs"
           onClick={handleSubmit}>
@@ -147,6 +148,7 @@ const Page = () => {
         {data?.form?.map((el) => (
           <p key={el?.id}>
             <Link key={el?.id} href={`/form/${el?.id}`}>
+              {/* prettier-ignore */}
               <button className="btn btn-outline btn-accent mb-2 w-full max-w-xs">
                 {' '}
                 {el?.id}{' '}
