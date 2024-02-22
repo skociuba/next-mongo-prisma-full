@@ -8,6 +8,12 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      width: {
+        a4: '210mm',
+      },
+      height: {
+        a4: '297mm',
+      },
       colors: {
         'custom-dark-grey': '#1f2937',
         'custom-light-grey': '#374151',
