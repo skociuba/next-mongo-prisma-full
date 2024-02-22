@@ -3,7 +3,7 @@
 
 import {createSlice, PayloadAction, current} from '@reduxjs/toolkit';
 
-import {FormState} from './../../types/form';
+import {FormState} from '../../types/form';
 
 const initialState: FormState = {
   firstName: '',

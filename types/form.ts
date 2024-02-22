@@ -1,7 +1,7 @@
 export type FormState = {
   firstName: string;
   lastName: string;
-  age: number | null;
+  age: string | null;
   nationality: string;
   sex: string | null;
   agree: boolean | null;
