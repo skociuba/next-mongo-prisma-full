@@ -53,6 +53,12 @@ const Page = () => {
   return (
     <div className="grid grid-cols-2">
       <div className=" m-20 grid gap-3">
+        <ul className="steps">
+          <li className="step step-accent">Basic</li>
+          <li className="step step-accent">About</li>
+          <li className="step">Work history</li>
+          <li className="step">Education</li>
+        </ul>
         <p className="grid-col grid">
           First Name
           <input

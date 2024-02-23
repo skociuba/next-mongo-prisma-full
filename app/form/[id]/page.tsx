@@ -44,23 +44,38 @@ const User = ({params}) => {
           {/* prettier-ignore */}
           <div
             ref={pdfRef}
-            className="h-a4 w-a4 mx-auto block  rounded-lg border p-3 pt-3 shadow-2xl">
-            <h1 className="border-b pb-2">CV</h1>
-            <p className=" mt-8 py-2">
-              <strong>First Name:</strong> {selectForm(id)?.firstName || `-`}{' '}
-            </p>
-            <p className="py-2">
-              <strong>Last Name:</strong> {selectForm(id)?.lastName || `-`}
-            </p>
-            <p className="py-2">
-              <strong>Sex:</strong> {selectForm(id)?.sex || `-`}
-            </p>
-            <p className="py-2">
-              <strong>Age:</strong> {selectForm(id)?.age || `-`}
-            </p>
-            <p className="py-2">
-              <strong>Nationality:</strong> {selectForm(id)?.nationality || `-`}
-            </p>
+            className="mx-auto block h-a4 w-a4  rounded-lg border shadow-2xl">
+            <div className="grid h-full grid-cols-3">
+              <div className="col-span-2 pl-6 text-left">
+                <h1 className="py-4 text-3xl font-bold">
+                  {' '}
+                  {selectForm(id)?.firstName || `-`}{' '}
+                  {selectForm(id)?.lastName || `-`}
+                </h1>
+                <p className=" mb-8 py-2">webdeveloper</p>
+                <p className="py-2">
+                  <strong>Last Name:</strong> {selectForm(id)?.lastName || `-`}
+                </p>
+                <p className="py-2">
+                  <strong>Sex:</strong> {selectForm(id)?.sex || `-`}
+                </p>
+                <p className="py-2">
+                  <strong>Age:</strong> {selectForm(id)?.age || `-`}
+                </p>
+                <p className="py-2">
+                  <strong>Nationality:</strong>{' '}
+                  {selectForm(id)?.nationality || `-`}
+                </p>
+              </div>
+              <div className="col-span-1 bg-accent py-4 pl-6 text-left">
+                <ul>
+                  <p className="font-bold">Details</p>
+                  <li className="py-2">phone</li>
+                  <li className="py-2">email</li>
+                  <li className="py-2">city</li>
+                </ul>{' '}
+              </div>{' '}
+            </div>
           </div>
         </div>
       )}
